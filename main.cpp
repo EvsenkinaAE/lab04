@@ -58,20 +58,61 @@ print_in_binary(const void* data, size_t size) {
 struct Student
 {
     char name [17];
-    uint16_t year;
+    int year;
     float sred_ball;
     uint8_t sex:1;
     int classes;
-    student *starosta;
-}
+    Student *starosta;
+};
 
 int main() {
     Student students[3]=
             {
-                    {"Fam1",2017,4,1,0,7,nuliptr}
-                    {"Fam2",}
+                    {"Artem",2017,4.1,1,1, nullptr},
+                    {"Sasha",2017,4,0,1,&students[0]},
+                    {"Masha",2017,4,0,1,&students[0]}
 
-            }
+            };
+    cout<<"Adress of array:"<<&students<<'\n';
+    cout<<"size of array:"<<sizeof(students)<<'\n';
+    cout<<"\t Adress of element:"<<"\t size of element:\n";
+    for(int i=0;i<3;i++){
+        cout<<i<<"\t"<<&students[i]<<"\t\t"<<sizeof(&students[i]);
+        cout<<'\n';
+
+    }
+
+    cout<< "For First elem of array:\n";
+    cout<<"\t Address of field:"<<"\t sizeof field:"<<"\t offset:\n";
+    cout<< "NAME:\t"<<&students[0].name<<"\t\t\t";
+    cout<<sizeof(students[0])<<"\t"<<offsetof(struct Student,name);
+    cout<<"n";
+    cout<< "YEAR:\t"<<&students[0].year<<"\t\t\t";
+    cout<<sizeof(students[0])<<"\t"<<offsetof(struct Student,name);
+    cout<<"n";
+    cout<< "SRED_BALL:\t"<<&students[0].sred_ball<<"\t\t\t";
+    cout<<sizeof(students[0])<<"\t"<<offsetof(struct Student,name);
+    cout<<"n";
+    cout<< "CLASSES:\t"<<&students[0].classes<<"\t\t\t";
+    cout<<sizeof(students[0])<<"\t"<<offsetof(struct Student,name);
+    cout<<"n";
+    cout<<"NAME:\n";
+    cout<<"Binary:\n";
+    print_in_binary(&students[0].name,sizeof(students[0].name));
+    cout<<"n Hex: ";
+    print_in_hex(&students[0].name,sizeof(students[0].name));
+    cout<<"n";
+    cout<<"YEAR:\n";
+    cout<<"Binary:\n";
+    print_in_binary(&students[0].year,sizeof(students[0].year));
+    cout<<"n Hex: ";
+    print_in_hex(&students[0].year,sizeof(students[0].year));
+    cout<<"\n";
+
+
+
+
+
 
     int operant1,operant2,res;
     char operant;
@@ -91,7 +132,7 @@ int main() {
 //    assert(nibble_to_hex(0хd) == 'd');
 //    assert(nibble_to_hex(0хf) == 'f');
 
-    cin>>operant1>>operant>>operant2;
+  /*  cin>>operant1>>operant>>operant2;
     if(operant == '&')
     {
         res = operant1&operant2;
@@ -136,7 +177,7 @@ int main() {
         print_in_binary(&operant2,sizeof(operant2));
         cout<<"= ";
         print_in_binary(&res,sizeof(res));
-    }
+    }*/
 
 //    uint8_t u8=3;
 //    print_in_binary(&u8,sizeof(u8));
